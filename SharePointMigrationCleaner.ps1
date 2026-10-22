@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 <#
     GUI-Tool: Finde und verschiebe Dateien (~$* oder 0 Byte)
     - Zielbasis standardmäßig automatisch aus Quelle abgeleitet:
@@ -15,6 +15,7 @@ if ([Threading.Thread]::CurrentThread.ApartmentState -ne 'STA') {
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+[System.Windows.Forms.Application]::EnableVisualStyles()
 
 function New-FolderPicker {
     param([string]$Description="Ordner auswählen",[string]$SelectedPath="")

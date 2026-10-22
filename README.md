@@ -35,16 +35,20 @@ Das Ziel kann im Feld jederzeit manuell geändert werden.
 
 ## Verwendung
 
-1. Skript herunterladen (`SharePointMigrationCleaner.ps1`).
-2. Rechtsklick → **Mit PowerShell ausführen** oder in einer PowerShell-Konsole:
+1. `SharePointMigrationCleaner.ps1` und `Start-SharePointMigrationCleaner.cmd` in denselben Ordner herunterladen.
+2. **Doppelklick auf `Start-SharePointMigrationCleaner.cmd`.**
+   Alternativ: Rechtsklick auf die `.ps1` → **Mit PowerShell ausführen** oder in einer PowerShell-Konsole:
    ```powershell
    powershell -ExecutionPolicy Bypass -File .\SharePointMigrationCleaner.ps1
    ```
+   (Ein Doppelklick auf die `.ps1` selbst öffnet unter Windows standardmäßig nur den Editor.)
 3. Quellordner wählen, Zielordner prüfen.
 4. Zuerst mit aktivem **Dry Run** starten und das Protokoll prüfen.
 5. Dry Run abwählen und erneut starten, um die Dateien tatsächlich zu verschieben.
 
 > Hinweis: Das Skript startet sich bei Bedarf selbst im STA-Modus neu, da Windows Forms das voraussetzt.
+
+> Wer das Skript bearbeitet: Es muss als **UTF-8 mit BOM** gespeichert bleiben. Ohne BOM liest Windows PowerShell 5.1 die Datei als ANSI und bricht beim Start mit Syntaxfehlern ab (in der PowerShell ISE fällt das nicht auf). Die mitgelieferte `.editorconfig` sorgt in den meisten Editoren dafür.
 
 ## Wichtig
 
@@ -53,7 +57,7 @@ Das Ziel kann im Feld jederzeit manuell geändert werden.
 
 ## Version
 
-1.1
+1.2
 
 ## Lizenz
 
