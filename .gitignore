@@ -1,0 +1,9 @@
+# Logdateien aus Testläufen
+CleanupLog_*.txt
+
+# Editor / OS
+.vscode/
+.vs/
+Thumbs.db
+desktop.ini
+.DS_Store
