@@ -54,3 +54,7 @@ Das Ziel kann im Feld jederzeit manuell geändert werden.
 ## Version
 
 1.1
+
+## Lizenz
+
+MIT – siehe [LICENSE](LICENSE). Nutzung auf eigene Verantwortung; vor dem echten Lauf immer zuerst einen Dry Run machen.
