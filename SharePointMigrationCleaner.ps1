@@ -28,8 +28,8 @@ function New-FolderPicker {
 
 function Get-DefaultDestFromSource {
     param([string]$SourcePath)
-    # Normalisieren
-    try { $src = (Resolve-Path -LiteralPath $SourcePath).Path } catch { return $null }
+    # Normalisieren (ProviderPath: bei UNC liefert .Path "Microsoft.PowerShell.Core\FileSystem::\\...")
+    try { $src = (Resolve-Path -LiteralPath $SourcePath).ProviderPath } catch { return $null }
     $src = $src.TrimEnd('\')
 
     if ($src.StartsWith('\\')) {
@@ -154,7 +154,7 @@ function Show-Error([string]$msg) {
 }
 
 function Normalize-Path([string]$p) {
-    try { (Resolve-Path -LiteralPath $p).Path.TrimEnd('\') } catch { $null }
+    try { (Resolve-Path -LiteralPath $p).ProviderPath.TrimEnd('\') } catch { $null }
 }
 
 # --- Events ---
