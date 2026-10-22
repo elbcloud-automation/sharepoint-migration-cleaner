@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 <#
     GUI-Tool: Finde und verschiebe Dateien (~$* oder 0 Byte)
     - Zielbasis standardmäßig automatisch aus Quelle abgeleitet:
@@ -15,6 +15,7 @@ if ([Threading.Thread]::CurrentThread.ApartmentState -ne 'STA') {
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+[System.Windows.Forms.Application]::EnableVisualStyles()
 
 function New-FolderPicker {
     param([string]$Description="Ordner auswählen",[string]$SelectedPath="")
@@ -27,8 +28,8 @@ function New-FolderPicker {
 
 function Get-DefaultDestFromSource {
     param([string]$SourcePath)
-    # Normalisieren
-    try { $src = (Resolve-Path -LiteralPath $SourcePath).Path } catch { return $null }
+    # Normalisieren (ProviderPath: bei UNC liefert .Path "Microsoft.PowerShell.Core\FileSystem::\\...")
+    try { $src = (Resolve-Path -LiteralPath $SourcePath).ProviderPath } catch { return $null }
     $src = $src.TrimEnd('\')
 
     if ($src.StartsWith('\\')) {
@@ -153,7 +154,7 @@ function Show-Error([string]$msg) {
 }
 
 function Normalize-Path([string]$p) {
-    try { (Resolve-Path -LiteralPath $p).Path.TrimEnd('\') } catch { $null }
+    try { (Resolve-Path -LiteralPath $p).ProviderPath.TrimEnd('\') } catch { $null }
 }
 
 # --- Events ---
